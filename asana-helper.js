@@ -73,11 +73,11 @@ function getTemplate() {
 
 function getStyles()
 {
-    return "#project_notes{ font-size:12px}" +
-           "#scify-hours td:first-child { padding-right: 12px;}"+
-            ".total { color: blue; font-weight: bold;}"+
-            "#as-helper-allocation{margin-left:5px;}"+
-            "";
+    return " #project_notes{ font-size:12px}" +
+           " #scify-hours td:first-child { padding-right: 12px;}"+
+           " .total { color: blue; font-weight: bold;}"+
+           " #as-helper-allocation{margin-left:5px;}"+
+           " #scify-hours { border-top: 1px solid gray;padding: 7px;}";
 }
 
 function addGlobalStyle(css) {
