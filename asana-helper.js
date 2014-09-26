@@ -1,11 +1,10 @@
 // ==UserScript==
 // @name        Asana tasks helper
-// @namespace   test
-// @description test
+// @namespace   scify
 // @include     https://app.asana.com/*
-// @version     1.1
-// @grand       none
+// @version     0.2
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
+// @updateURL   https://raw.githubusercontent.com/AlexJoom/javascript-asana-extensions/master/asana-helper.js
 // ==/UserScript==
 
 
