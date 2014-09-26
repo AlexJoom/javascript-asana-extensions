@@ -3,7 +3,7 @@
 // @namespace   test
 // @description test
 // @include     https://app.asana.com/*
-// @version     1.1
+// @version     0.2
 // @grand       none
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // ==/UserScript==
