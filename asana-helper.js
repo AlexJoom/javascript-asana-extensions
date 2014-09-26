@@ -11,7 +11,10 @@
 window.setInterval(function(){
     if ($("#project_notes").length>0) {
         if ($("#scify-hours").length==0)
-            $(getTemplate()).insertAfter("#project_notes .loading-boundary");     
+        {
+            $(getTemplate()).insertAfter("#project_notes .loading-boundary");    
+            addGlobalStyle(getStyles);
+        }
         getHoursPerName();
     }
 },2000);
@@ -61,3 +64,23 @@ function getTemplate() {
     +"</table>"
     +"</div>";
 }
+
+function getStyles()
+{
+    return "#project_notes{ font-size:12px}" +
+           "#scify-hours td:first-child { padding-right: 12px;}"+
+            ".total { color: blue; font-weight: bold;}"+
+            ""+
+            "";
+}
+
+function addGlobalStyle(css) {
+    var head, style;
+    head = document.getElementsByTagName('head')[0];
+    if (!head) { return; }
+    style = document.createElement('style');
+    style.type = 'text/css';
+    style.innerHTML = css;
+    head.appendChild(style);
+}
+
