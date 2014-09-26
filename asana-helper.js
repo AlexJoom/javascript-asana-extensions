@@ -13,7 +13,7 @@ window.setInterval(function(){
         if ($("#scify-hours").length==0)
         {
             $(getTemplate()).insertAfter("#project_notes .loading-boundary");    
-            addGlobalStyle(getStyles);
+            addGlobalStyle(getStyles());
         }
         getHoursPerName();
     }
