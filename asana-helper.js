@@ -20,7 +20,7 @@ window.setInterval(function(){
 },2000);
 
 function getHoursPerName(){
-    $("#scify-hours").find("table").find('.data-entry').remove();
+    $("#scify-hours").find("#as-helper-allocation").find('.data-entry').remove();
     var persons =[];
     var hours = [];
     var total = 0;
@@ -38,7 +38,7 @@ function getHoursPerName(){
                         if (index==-1) {
                             persons.push(img);
                             console.log(profilePhoto.html());
-                            $("#scify-hours").find("table").append("<tr class='data-entry'><td class='photo'></td><td class='data'></td></tr>");
+                            $("#scify-hours").find("#as-helper-allocation").append("<tr class='data-entry'><td class='photo'></td><td class='data'></td></tr>");
                             index = $.inArray(img, persons);
                             hours[index] = 0;
                         }
@@ -58,11 +58,17 @@ function getHoursPerName(){
 }
 
 function getTemplate() {
-    return "<div id='scify-hours'>Total hours: <span class='total'></span>"
-    +"<table>"
-    + "<tr><td>Name</td><td>Remaining</td></tr>"
-    +"</table>"
-    +"</div>";
+    
+    return "<div id='scify-hours'>"+
+            "<table>"+
+                "<tr><td style='border-right: 2px solid gray;vertical-align:middle;text-align:center;font-size:18px;'>Total</br> <span class='total'></span>h</td>"+
+                    "<td>"+
+                            "<table id='as-helper-allocation'>"+
+                              "<tr><td>Name</td><td>Remaining</td></tr>"+
+                            "</table>"+
+                    "</td></tr>"+
+            "</table>"+
+            +"</div>";
 }
 
 function getStyles()
@@ -70,7 +76,7 @@ function getStyles()
     return "#project_notes{ font-size:12px}" +
            "#scify-hours td:first-child { padding-right: 12px;}"+
             ".total { color: blue; font-weight: bold;}"+
-            ""+
+            "#as-helper-allocation{margin-left:5px;}"+
             "";
 }
 
