@@ -1,6 +1,6 @@
 javascript-asana-extensions 
 ===========================
-Asana has missing features when it comes to scrum development. Its not possible to add hour estimations on a task and sum these per person. This is very helpful in order to find out if the team allocation for a given sprint is fine or you need to make adjustments.
+Asana has missing features when it comes to scrum development. It's not possible to add hour estimations on a task and sum these per person. This is very helpful in order to find out if the team allocation for a given sprint is fine or you need to make adjustments.
 
 We've spend a couple of hours creating a greasemonkey script that does this for you, based on naming conventions.
 
@@ -13,5 +13,6 @@ We've spend a couple of hours creating a greasemonkey script that does this for 
 and the total hours per person will be calculated and presented in the top of the page, under the project's description.
 
 
-Projects that contain the word "backlog" are ignored by the script. Backlog ussually contain user stories that will be added in future sprints. So it doesnt make any sense to calculate total hours in backlogs
+Projects that contain the word "backlog" are ignored by the script.
+A backlog contains user stories that will be added in future sprints. So it doesnt make any sense to calculate total hours in backlogs
 
