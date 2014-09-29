@@ -4,7 +4,7 @@ Asana has missing features when it comes to scrum development. Its not possible 
 
 We've spend a couple of hours creating a greasemonkey script that does this for you, based on naming conventions.
 
-1. Download greasemonkey 
+1. Download greasemonkey (for firefox https://addons.mozilla.org/el/firefox/addon/greasemonkey/)
 2. Create a new script by copy-pasting the asana-helper.js
 3. Name your tasks like
      "5h | Create birthday cake"
@@ -14,3 +14,4 @@ and the total hours per person will be calculated and presented in the top of th
 
 
 Projects that contain the word "backlog" are ignored by the script. Backlog ussually contain user stories that will be added in future sprints. So it doesnt make any sense to calculate total hours in backlogs
+
