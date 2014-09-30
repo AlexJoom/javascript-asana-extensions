@@ -2,7 +2,7 @@ javascript-asana-extensions
 ===========================
 Asana has missing features when it comes to scrum development. It's not possible to add hour estimations on a task and sum these per person. This is very helpful in order to find out if the team allocation for a given sprint is fine or you need to make adjustments.
 
-We've spend a couple of hours creating a greasemonkey script that does this for you, based on naming conventions.
+Here you can find a small greasemonkey script that does this for you, based on naming conventions.
 
 1. Download greasemonkey (for firefox https://addons.mozilla.org/el/firefox/addon/greasemonkey/)
 2. Create a new script by copy-pasting the asana-helper.js
