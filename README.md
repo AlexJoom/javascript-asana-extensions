@@ -4,9 +4,9 @@ Asana has missing features when it comes to scrum development. It's not possible
 
 Here you can find a small greasemonkey script that does this for you, based on naming conventions.
 
-1. Download greasemonkey (for firefox https://addons.mozilla.org/el/firefox/addon/greasemonkey/)
-2. Create a new script by copy-pasting the asana-helper.js
-3. Name your tasks like
+1. Download & install greasemonkey (for firefox https://addons.mozilla.org/el/firefox/addon/greasemonkey/)
+2. Open https://github.com/AlexJoom/javascript-asana-extensions/blob/master/asana-helper.user.js .Greasemonkey will ask you to install the script. Install it.
+3. Now on asana name your tasks like
      "5h | Create birthday cake"
      "2h | Buy the present" 
 
