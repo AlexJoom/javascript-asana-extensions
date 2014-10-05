@@ -2,9 +2,9 @@
 // @name        Asana tasks helper
 // @namespace   scify
 // @include     https://app.asana.com/*
-// @version     0.3.1
+// @version     0.3.2
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
-// @updateURL   https://raw.githubusercontent.com/AlexJoom/javascript-asana-extensions/master/asana-helper.js
+// @updateURL   https://raw.githubusercontent.com/AlexJoom/javascript-asana-extensions/master/asana-helper.user.js
 // ==/UserScript==
 window.setInterval(function () {
   if ($('#project_notes').length > 0 && $("#project_title").text().toLowerCase().indexOf("backlog")==-1) {
