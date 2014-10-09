@@ -2,7 +2,7 @@
 // @name        Asana tasks helper
 // @namespace   scify
 // @include     https://app.asana.com/*
-// @version     0.4
+// @version     0.4.1
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @updateURL   https://raw.githubusercontent.com/AlexJoom/javascript-asana-extensions/master/asana-helper.user.js
 // ==/UserScript==
@@ -15,7 +15,7 @@ window.setInterval(function () {
         }
         getHoursPerName();
     }
-}, 10000);
+}, 2000);
 
 function getHoursPerName() {
     $('#scify-hours').find('#as-helper-allocation').find('.data-entry').remove();
