@@ -2,50 +2,66 @@
 // @name        Asana tasks helper
 // @namespace   scify
 // @include     https://app.asana.com/*
-// @version     0.5.1
+// @version     0.5.2
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @updateURL   https://raw.githubusercontent.com/AlexJoom/javascript-asana-extensions/master/asana-helper.user.js
 // ==/UserScript==
+var parentId="1";
+
 function allowDrop(ev) {
 	ev.preventDefault();
-    ev.target.addClass('scify-container-hovered');
+	ev.target.addClass('scify-container-hovered');
 }
+
 function hideDrop(ev) {
-    ev.preventDefault();
-    ev.target.removeClass('scify-container-hovered');
+    	ev.preventDefault();
+    	ev.target.removeClass('scify-container-hovered');
 }
+
 function drag(ev) {
-    ev.dataTransfer = ev.originalEvent.dataTransfer;
+	ev.dataTransfer = ev.originalEvent.dataTransfer;
 	ev.dataTransfer.setData('text/html', ev.target.id);
 }
+
 function drop(ev) {
 	ev.preventDefault();
-    ev.dataTransfer = ev.originalEvent.dataTransfer;
+	ev.dataTransfer = ev.originalEvent.dataTransfer;
 	var data = ev.dataTransfer.getData("text/html");
 	ev.target.appendChild(document.getElementById(data));
-    $('.scify-container-hovered').removeClass('scify-container-hovered');
+	$('.scify-container-hovered').removeClass('scify-container-hovered');
+	parentId = $(ev.target).data()["id"];
 }
+
 window.setTimeout(function() {
-    if ($('#project_notes').length <= 0 || $("#project_title").text().toLowerCase().indexOf("backlog")!=-1) {
-        return;
-    }
-    $(getTemplate()).insertAfter('#project_notes .loading-boundary');
-    addGlobalStyle(getStyles());
-    $('#scify-hours').on('dragstart', function(ev){drag(ev);});
-    addContainers();
-    window.setInterval(function () {
-    	getHoursPerName();
-    }, 2000);
+	addGlobalStyle(getStyles());
+	window.setInterval(function () {  
+	        if ($('#project_title').length <= 0 || $("#project_title").text().toLowerCase().indexOf("backlog")!=-1) {
+	            return;
+	        }
+	        $('.scify-container').remove();
+	    	addContainers();
+	    	$(getTemplate()).appendTo($('.scify-container')[parentId]);
+	    	$('#scify-hours').on('dragstart', function(ev){drag(ev);});
+	    	getHoursPerName();
+    	}, 2000);
 }, 1000);
+
 function addContainers() {
-    var container = '<div class="scify-container"></div>';
-    $('#right_pane').append(container);
-    $('.scroll-container.scroll-area.domain-scroll-area.greyable-area-contents').append(container);
-    var cur = $('.scify-container');
-    cur.on('dragover', function(ev){allowDrop(ev);});
-    cur.on('dragleave', function(ev){hideDrop(ev);});
-    cur.on('drop', function(ev){drop(ev);});
+	var container = '<div class="scify-container"></div>';
+	$('#project_notes .loading-boundary').append(container);
+	$('#right_pane').append(container);
+	$('.scroll-container.scroll-area.domain-scroll-area.greyable-area-contents').append(container);
+	$('.search-header-row-view').after(container);
+	$('.pot-header-row-view').after(container);
+	$('.scify-container').each(function(i, cur) {
+		$(cur).data("id", i);
+	});
+	var cur = $('.scify-container');
+	cur.on('dragover', function(ev){allowDrop(ev);});
+	cur.on('dragleave', function(ev){hideDrop(ev);});
+	cur.on('drop', function(ev){drop(ev);});
 }
+
 function getHoursPerName() {
     $('#scify-hours').find('#as-helper-allocation').find('.data-entry').remove();
     var persons = [
@@ -111,9 +127,9 @@ function getHoursPerName() {
     });
     $('#scify-hours').find('.total').text(total);
 }
+
 function getTemplate() {
-    return '<div class="scify-container">' +
-        '<div id="scify-hours" draggable="true">' +
+	return '<div id="scify-hours" draggable="true">' +
         '<table>' +
         '<tr><td style="border-right: 2px solid gray;vertical-align:middle;text-align:center;font-size:18px;">Total</br> <span class="total"></span>h</td>' +
         '<td>' +
@@ -122,26 +138,27 @@ function getTemplate() {
         '</table>' +
         '</td></tr>' +
         '</table>' +
-        '</div>' +
         '</div>';
 }
+
 function getStyles() {
-    return ' #project_notes{ font-size:12px}' +
+	return ' #project_notes{ font-size:12px}' +
         ' #scify-hours td:first-child { padding-right: 12px;}' +
         ' .total { color: blue; font-weight: bold;}' +
         ' #as-helper-allocation{margin-left:5px;}' +
         ' #scify-hours { border-top: 1px solid gray;padding: 7px;}' +
-        ' .scify-container { min-height: 5px;}' +
-        ' .scify-container-hovered { min-height: 10px; border: 1px solid grey;}';
+        ' .scify-container { min-height: 10px;}' +
+        ' .scify-container-hovered { min-height: 20px; border: 1px solid grey;}';
 }
+
 function addGlobalStyle(css) {
-    var head, style;
-    head = document.getElementsByTagName('head')[0];
-    if (!head) {
-        return;
-    }
-    style = document.createElement('style');
-    style.type = 'text/css';
-    style.innerHTML = css;
-    head.appendChild(style);
+	var head, style;
+	head = document.getElementsByTagName('head')[0];
+	if (!head) {
+		return;
+	}
+	style = document.createElement('style');
+	style.type = 'text/css';
+	style.innerHTML = css;
+	head.appendChild(style);
 }
