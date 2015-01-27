@@ -162,3 +162,21 @@ function addGlobalStyle(css) {
 	style.innerHTML = css;
 	head.appendChild(style);
 }
+
+
+/*Code for checking appropriate sprint tasks*/
+$( document ).ready(function() {
+	$( ".unchecked" ).on( "click", function() {
+		console.log( "inside onCick!" );
+		$( ".unchecked" ).css("color","green !important");
+	});
+	
+	$(".unchecked").hover(function() {
+		$(this).css("color","green !important");
+	});
+	
+	$(".task-row-text-input").hover(function() {
+		$(this).css("color","green !important");
+	});
+	
+});
