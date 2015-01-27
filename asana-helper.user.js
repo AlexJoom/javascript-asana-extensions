@@ -31,10 +31,20 @@ function drop(ev) {
 	$('.scify-container-hovered').removeClass('scify-container-hovered');
 	parentId = $(ev.target).data()["id"];
 }
-
+//test commit 
 window.setTimeout(function() {
 	addGlobalStyle(getStyles());
-	window.setInterval(function () {  
+
+	window.setInterval(function () {
+      
+          /*Code to change the background color of the Backlog tasks*/
+          var projectTitle = $(".header-name").text();
+          /*Check the upper title so that it contains the word "Sprint"*/
+          if(projectTitle.search("Sprint")!=-1) {
+              var projectName = projectTitle.substr(0, projectTitle.indexOf(" "));
+              $(".grid-tags-and-date:contains('" +projectName + "')").parents("tr").css("background-color","#CC99FF");
+              console.log( "background color changed");
+          }
 	        if ($('#project_title').length <= 0 || $("#project_title").text().toLowerCase().indexOf("backlog")!=-1) {
 	            return;
 	        }
@@ -44,7 +54,7 @@ window.setTimeout(function() {
 	    	$('#scify-hours').on('dragstart', function(ev){drag(ev);});
 	    	getHoursPerName();
     	}, 2000);
-}, 1000);
+}, 4000);
 
 function addContainers() {
 	var container = '<div class="scify-container"></div>';
@@ -162,21 +172,3 @@ function addGlobalStyle(css) {
 	style.innerHTML = css;
 	head.appendChild(style);
 }
-
-
-/*Code for checking appropriate sprint tasks*/
-$( document ).ready(function() {
-	$( ".unchecked" ).on( "click", function() {
-		console.log( "inside onCick!" );
-		$( ".unchecked" ).css("color","green !important");
-	});
-	
-	$(".unchecked").hover(function() {
-		$(this).css("color","green !important");
-	});
-	
-	$(".task-row-text-input").hover(function() {
-		$(this).css("color","green !important");
-	});
-	
-});
