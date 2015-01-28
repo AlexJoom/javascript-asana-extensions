@@ -2,9 +2,8 @@
 // @name        Asana tasks helper
 // @namespace   scify
 // @include     https://app.asana.com/*
-// @version     0.5.3
+// @version     0.5.4
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
-// @updateURL   https://raw.githubusercontent.com/AlexJoom/javascript-asana-extensions/master/asana-helper.user.js
 // ==/UserScript==
 var parentId="1";
 
@@ -38,20 +37,16 @@ function checkTaskTitle () {
         try {
            var taskName = $(row).find('textarea').val();
            if(typeof(taskName) != "undefined") {
-               //console.log("Task "+i+": "+taskName);
-               //console.log("html: "+$(row).html());
                if(taskName.indexOf("[") == -1 || taskName.indexOf("]") == -1 ) {
-                   console.log("found an invalid title.");
-                   console.log($(row).find("span").html());
-                   $(row).find("span").hide();
-                   //$(row).find("span").after('<span><i src="http://cdn.flaticon.com/png/256/9188.png"></i></span>');
-                   /*$(row).parents("tr span").click(function(event){
-                       event.stopPropagation();
-                       console.log("The span element was clicked.");
-                   });*/
+                   $(row).find("span:first-child").hide();
+                   $(row).find(".scify-warning").remove();
+                   $(row).find(".show-details").show();
+                   $(row).find(".grid_cell_boolean").append('<span class="scify-warning"><i class="fa fa-exclamation-triangle"></i></span>');
+                   $(".more-detail").find(".scify-warning").remove();
                }
                else {
                    $(row).find("span").show();
+                   $(row).find(".scify-warning").remove();
                    $(row).find(".checkmark").hide();
                }
            }
@@ -61,8 +56,6 @@ function checkTaskTitle () {
     });
 }
 
-
-//test commit 
 window.setTimeout(function() {
 	addGlobalStyle(getStyles());
 			
@@ -214,4 +207,5 @@ function addGlobalStyle(css) {
 	style.type = 'text/css';
 	style.innerHTML = css;
 	head.appendChild(style);
+    $("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>");
 }
