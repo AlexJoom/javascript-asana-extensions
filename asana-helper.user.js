@@ -2,7 +2,7 @@
 // @name        Asana tasks helper
 // @namespace   scify
 // @include     https://app.asana.com/*
-// @version     0.5.6
+// @version     0.5.7
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @update	https://raw.githubusercontent.com/AlexJoom/javascript-asana-extensions/master/asana-helper.user.js
 // ==/UserScript==
@@ -43,6 +43,7 @@ function checkTaskTitle () {
                    $(row).find(".scify-warning").remove();
                    $(row).find(".show-details").show();
                    $(row).find(".grid_cell_boolean").append('<span class="scify-warning"><i class="fa fa-exclamation-triangle"></i></span>');
+                   $(row).find(".scify-warning").parent().css("padding-top","10px");
                    $(".more-detail").find(".scify-warning").remove();
                }
                else {
@@ -75,10 +76,10 @@ window.setTimeout(function() {
 	    /*Code to change the background color of the Backlog tasks in Sprint*/
 	    var projectTitle = $(".header-name").text();
 	    if(projectTitle.indexOf("Sprint") != -1) {  
-		/*the title must be checked on every interval*/
-		checkTaskTitle();
-		var projectName = projectTitle.substr(0, projectTitle.indexOf(" "));
-		$(".grid-tags-and-date:contains('" +projectName + "')").parents("tr").css("background-color","#DBB8FF");
+		     /*the title must be checked on every interval*/
+		     checkTaskTitle();
+		     var projectName = projectTitle.substr(0, projectTitle.indexOf(" "));
+		     $(".grid-tags-and-date:contains('" +projectName + "')").parents(".grid_cell_string").css("background-color","#F2E5FF");    
 	    }
       
 	    //console.log("found:" + $(".unchecked").length);
