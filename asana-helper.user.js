@@ -207,5 +207,6 @@ function addGlobalStyle(css) {
 	style.type = 'text/css';
 	style.innerHTML = css;
 	head.appendChild(style);
-    $("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>");
+	/*add awesome font css*/
+    	$("head link[rel='stylesheet']").last().after("<link rel='stylesheet' href='//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>");
 }
