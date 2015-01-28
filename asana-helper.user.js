@@ -31,28 +31,71 @@ function drop(ev) {
 	$('.scify-container-hovered').removeClass('scify-container-hovered');
 	parentId = $(ev.target).data()["id"];
 }
+
+/*function to check if the task title has the actual working hours*/
+function checkTaskTitle () {
+    $('#grid').find('tr').each(function (i, row) {
+        try {
+           var taskName = $(row).find('textarea').val();
+           if(typeof(taskName) != "undefined") {
+               //console.log("Task "+i+": "+taskName);
+               //console.log("html: "+$(row).html());
+               if(taskName.indexOf("[") == -1 || taskName.indexOf("]") == -1 ) {
+                   console.log("found an invalid title.");
+                   console.log($(row).find("span").html());
+                   $(row).find("span").hide();
+                   //$(row).find("span").after('<span><i src="http://cdn.flaticon.com/png/256/9188.png"></i></span>');
+                   /*$(row).parents("tr span").click(function(event){
+                       event.stopPropagation();
+                       console.log("The span element was clicked.");
+                   });*/
+               }
+               else {
+                   $(row).find("span").show();
+                   $(row).find(".checkmark").hide();
+               }
+           }
+        }
+        catch(err) {
+        }
+    });
+}
+
+
 //test commit 
 window.setTimeout(function() {
 	addGlobalStyle(getStyles());
+			
+  
+    
+	$(".priority").click(function(e){   
+		    console.log( "inside priority!" );
+      e.stopPropagation();
+      
+      return false;
+   });
+    
 
 	window.setInterval(function () {
+         
+	    /*Code to change the background color of the Backlog tasks in Sprint*/
+	    var projectTitle = $(".header-name").text();
+	    if(projectTitle.indexOf("Sprint") != -1) {  
+		/*the title must be checked on every interval*/
+		checkTaskTitle();
+		var projectName = projectTitle.substr(0, projectTitle.indexOf(" "));
+		$(".grid-tags-and-date:contains('" +projectName + "')").parents("tr").css("background-color","#CC99FF");
+	    }
       
-          /*Code to change the background color of the Backlog tasks*/
-          var projectTitle = $(".header-name").text();
-          /*Check the upper title so that it contains the word "Sprint"*/
-          if(projectTitle.search("Sprint")!=-1) {
-              var projectName = projectTitle.substr(0, projectTitle.indexOf(" "));
-              $(".grid-tags-and-date:contains('" +projectName + "')").parents("tr").css("background-color","#CC99FF");
-              console.log( "background color changed");
-          }
-	        if ($('#project_title').length <= 0 || $("#project_title").text().toLowerCase().indexOf("backlog")!=-1) {
+	    //console.log("found:" + $(".unchecked").length);
+	    if ($('#project_title').length <= 0 || $("#project_title").text().toLowerCase().indexOf("backlog")!=-1) {
 	            return;
-	        }
-	        $('.scify-container').remove();
-	    	addContainers();
-	    	$(getTemplate()).appendTo($('.scify-container')[parentId]);
-	    	$('#scify-hours').on('dragstart', function(ev){drag(ev);});
-	    	getHoursPerName();
+	    }
+	    $('.scify-container').remove();
+	    addContainers();
+	    $(getTemplate()).appendTo($('.scify-container')[parentId]);
+	    $('#scify-hours').on('dragstart', function(ev){drag(ev);});
+	    getHoursPerName();
     	}, 2000);
 }, 4000);
 
