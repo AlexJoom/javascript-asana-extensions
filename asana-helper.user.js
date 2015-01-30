@@ -2,9 +2,8 @@
 // @name        Asana tasks helper
 // @namespace   scify
 // @include     https://app.asana.com/*
-// @version     0.5.8
+// @version     0.5.6
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
-// @update	https://raw.githubusercontent.com/AlexJoom/javascript-asana-extensions/master/asana-helper.user.js
 // ==/UserScript==
 var parentId="1";
 
@@ -42,9 +41,17 @@ function checkTaskTitle () {
                    $(row).find("span:first-child").hide();
                    $(row).find(".scify-warning").remove();
                    $(row).find(".show-details").show();
-                   $(row).find(".grid_cell_boolean").append('<span title="Please insert completed hours" class="scify-warning"><i class="fa fa-exclamation-triangle"></i></span>');
+                   $(row).find(".grid_cell_boolean").append('<span class="scify-warning"><i class="fa fa-exclamation-triangle"></i></span>');
                    $(row).find(".scify-warning").parent().css("padding-top","10px");
                    $(".more-detail").find(".scify-warning").remove();
+                   
+                   /*code to fix hidden assignee span bug*/
+                   $(".assignee").show();
+                   /*code to fix hidden bar input (e.g. email) rows bug*/
+                   $(".bar-container").show();
+                   $(".bar_input_span").show();
+                   $(".bar_input_span").children().show();
+                   
                }
                else {
                    $(row).find("span").show();
@@ -79,8 +86,7 @@ window.setTimeout(function() {
 		     /*the title must be checked on every interval*/
 		     checkTaskTitle();
 		     var projectName = projectTitle.substr(0, projectTitle.indexOf(" "));
-		     $(".grid-tags-and-date:contains('" +projectName + "')").parents(".grid_cell_string").css("background-color","#F2E5FF");
-         $(".grid-tags-and-date:contains('" +projectName + "')").css("background-color","#F2E5FF");
+		     $(".grid-tags-and-date:contains('" +projectName + "')").parents(".grid_cell_string").css("background-color","#F2E5FF");    
 	    }
       
 	    //console.log("found:" + $(".unchecked").length);
