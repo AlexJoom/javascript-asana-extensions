@@ -2,8 +2,9 @@
 // @name        Asana tasks helper
 // @namespace   scify
 // @include     https://app.asana.com/*
-// @version     0.5.7
+// @version     0.5.8
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
+// @update	https://github.com/AlexJoom/javascript-asana-extensions/edit/master/asana-helper.user.js
 // ==/UserScript==
 var parentId="1";
 
@@ -38,6 +39,8 @@ function checkTaskTitle () {
            var taskName = $(row).find('textarea').val();
            if(typeof(taskName) != "undefined") {
                if(taskName.indexOf("[") == -1 || taskName.indexOf("]") == -1 ) {
+                   var pattern = /[0-9]h/g;
+                   if(taskName.match(pattern) != null) {
                    $(row).find("span:first-child").hide();
                    $(row).find(".scify-warning").remove();
                    $(row).find(".show-details").show();
@@ -52,6 +55,12 @@ function checkTaskTitle () {
                    $(".bar_input_span").show();
                    $(".bar_input_span").children().show();
                    
+               }
+               else {
+                   $(row).find("span").show();
+                   $(row).find(".scify-warning").remove();
+                   $(row).find(".checkmark").hide();
+               }
                }
                else {
                    $(row).find("span").show();
