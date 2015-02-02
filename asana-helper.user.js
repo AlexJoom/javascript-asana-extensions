@@ -2,9 +2,9 @@
 // @name        Asana tasks helper
 // @namespace   scify
 // @include     https://app.asana.com/*
-// @version     0.5.8
+// @version     0.5.9
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
-// @update	https://github.com/AlexJoom/javascript-asana-extensions/edit/master/asana-helper.user.js
+// @update	https://raw.githubusercontent.com/AlexJoom/javascript-asana-extensions/master/asana-helper.user.js
 // ==/UserScript==
 var parentId="1";
 
