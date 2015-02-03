@@ -2,7 +2,7 @@
 // @name        Asana tasks helper
 // @namespace   scify
 // @include     https://app.asana.com/*
-// @version     0.5.9
+// @version     0.5.10
 // @require     http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
 // @update	https://raw.githubusercontent.com/AlexJoom/javascript-asana-extensions/master/asana-helper.user.js
 // ==/UserScript==
@@ -99,7 +99,7 @@ window.setTimeout(function() {
 	    }
       
 	    //console.log("found:" + $(".unchecked").length);
-	    if ($('#project_title').length <= 0 || $("#project_title").text().toLowerCase().indexOf("backlog")!=-1) {
+	    if ($('#project_title').length <= 0) {
 	            return;
 	    }
 	    $('.scify-container').remove();
